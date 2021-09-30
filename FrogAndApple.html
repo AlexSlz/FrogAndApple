@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ALEX</title>
+  </head>
+  <body>
+    <h1 id="example"></h1>
+
+    <button id="btn">apple</button><br /><br />
+    <button id="eat">frog</button>
+
+    <script>
+      var text = document.getElementById('example')
+      var btn = document.getElementById('btn')
+      var eatBtn = document.getElementById('eat')
+
+      let speed = 10
+
+      let frog = '🐸'
+      let countFrog = 0
+      let apple = '🍎'
+      let countApple = 0
+
+      btn.addEventListener('click', function click(e) {
+        drawApples()
+      })
+      eatBtn.addEventListener('click', function click(e) {
+        eatApples()
+      })
+
+      function drawApples() {
+        for (var i = 0; i < countFrog + 1; i++) {
+          setTimeout(function () {
+            text.textContent = apple + text.textContent
+            countApple++
+            updateText()
+          }, i * speed)
+        }
+      }
+      function eatApples() {
+        if (countApple >= countFrog)
+          for (var i = countApple - 1; i >= 0; i--) {
+            setTimeout(function () {
+              text.textContent += frog
+              text.textContent = text.textContent.substring(2)
+              countFrog++
+              countApple--
+              updateText()
+            }, i * speed)
+          }
+      }
+
+      function updateText() {
+        eatBtn.textContent = frog + ' | ' + countFrog
+        btn.textContent = apple + ' | ' + countApple
+      }
+    </script>
+  </body>
+</html>
